@@ -11,11 +11,10 @@ This project is a Python-based RSS parser for Awwwwards website that monitors an
 
 ## Project Structure
 
-- `awwwwards_bot.py`: Main script for RSS parsing and bot functionality
-- `rss_parser.py`: RSS feed parsing functionality
-- `telegram_messege.py`: Telegram messaging integration
-- `last_check.json`: Stores the timestamp of last feed check
-- `sent_articles.json`: Keeps track of processed articles
+- `awwwwards_bot.py`: Main script for RSS parsing, state management, and Telegram bot functionality.
+- `rss_parser.py`: Module for RSS feed parsing functionality.
+- `telegram_messege.py`: Module for Telegram messaging integration.
+- `sent_articles.json`: Stores unique identifiers (e.g., links) of articles that have already been processed and sent, to prevent duplicates.
 
 ## Setup
 
@@ -28,11 +27,30 @@ This project is a Python-based RSS parser for Awwwwards website that monitors an
 
 ## Configuration
 
-[Configuration details will be added based on the actual implementation]
+To configure the Telegram bot, you need to create a `.env` file in the root directory of the project. This file should contain your Telegram Bot Token and Chat ID.
+
+Create a file named `.env` and add the following lines, replacing the placeholder values with your actual credentials:
+
+```env
+BOT_TOKEN="YOUR_TELEGRAM_BOT_TOKEN"
+CHAT_ID="YOUR_TELEGRAM_CHAT_ID_OR_CHANNEL_USERNAME"
+```
+
+The `telegram_messege.py` module will load these variables to send messages.
 
 ## Usage
 
-[Usage instructions will be added based on the actual implementation]
+To run the bot, navigate to the project directory in your terminal and execute the main script:
+
+```bash
+python awwwwards_bot.py
+```
+
+When executed, the bot performs the following actions:
+1.  Fetches the latest articles from the Awwwards blog RSS feed.
+2.  Checks against `sent_articles.json` to identify new articles.
+3.  Sends a digest of these new articles to the configured Telegram chat or channel.
+4.  Updates `sent_articles.json` with the links of the articles that were sent.
 
 ## Contributing
 
